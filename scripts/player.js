@@ -1,11 +1,9 @@
-function buzzAnimation(isFirst) {
+function buzzAnimation() {
     $(".buzz-inner-button").css({
         "transform": "rotate(-55deg)",
         "border": "7px solid rgb(30,5,5)",
     });
-    if (isFirst) {
-        $(".buzz-inner-light").css("background-color", "lime")
-    }
+
     let timer = setTimeout(function() {
         $(".buzz-inner-button").css({
             "transform": "rotate(-55deg) translate(0, -4px)",
@@ -39,14 +37,12 @@ function setupPeer(gameID) {
     .then(() => {
         if (confirm("Join the game?")) {
             var conn = peer.connect(gameID);
-            var isFirst = true;
-
             conn.on('open', () => {
                 conn.on('data', (data) => {
-                    if (data == "LOCKOUT") {
-                        isFirst = false;
-                    } else {
-                        isFirst = true;
+                    if (data == "ACCEPTED") {
+                        $(".buzz-inner-light").css("background-color", "lime")
+                    }
+                    if (data == "CLEAR") {
                         $(".buzz-inner-light").css("background-color", "gray")
                     }
                 })
@@ -54,19 +50,15 @@ function setupPeer(gameID) {
 
             $(document).on('keydown', (e) => {
                 if (e.keyCode === 32) {
-                    if (isFirst == true) {
-                        conn.send("BUZZ")
-                    };
-                    buzzAnimation(isFirst); 
+                    conn.send("BUZZ")
+                    buzzAnimation(); 
                 }
             })
             $(".buzz-outer-button").on('click', () => {
-                if (isFirst == true) {
-                    conn.send("BUZZ")
-                };
-                buzzAnimation(isFirst); 
+                conn.send("BUZZ")
+                buzzAnimation(); 
             })
-            
+
 
             conn.on('error', () => {
                 if (confirm('Game ended!')) {

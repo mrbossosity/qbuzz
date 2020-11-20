@@ -29,18 +29,23 @@ function setupPeer(id) {
     var delay = Promise.resolve()
     .then(() => {
         var openDataConnections = [];
+        var lockout = false;
+
         peer.on('connection', (conn) => {
             conn.on('open', () => {
                 console.log("Player joined!");
                 openDataConnections.push(conn);
 
                 conn.on('data', (data) => {
-                    openDataConnections.forEach(conn => conn.send("LOCKOUT"));
+                    if (lockout == false) {
+                        conn.send("ACCEPTED");
+                        let playerNum = openDataConnections.indexOf(conn);
+                        let litColor = (playerNum > 4) ? "lime" : "rgb(255,5,0)";
+                        $(".mod-actual-light").eq(playerNum).css("background-color", litColor);
+                    } 
+                    
+                    lockout = true;
                     console.log(data);
-
-                    let playerNum = openDataConnections.indexOf(conn);
-                    let litColor = (playerNum > 4) ? "lime" : "rgb(255,5,0)";
-                    $(".mod-actual-light").eq(playerNum).css("background-color", litColor);
                 });
 
                 conn.on('error', () => {
@@ -58,12 +63,14 @@ function setupPeer(id) {
 
         $(document).on('keydown', (e) => {
             if (e.keyCode === 13) {
+                lockout = false;
                 openDataConnections.forEach(conn => conn.send("CLEAR"))
                 clearAnimation(); 
                 console.log("CLEAR");
             }
         })
         $(".mod-reset").on('click', () => {
+            lockout = false;
             openDataConnections.forEach(conn => conn.send("CLEAR"))
             clearAnimation(); 
             console.log("CLEAR");
