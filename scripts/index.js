@@ -11,11 +11,11 @@ function createGameID() {
 $("#host-select").on('click', () => {
     const gameID = createGameID();
     const hash = `#${gameID}`;
-    window.open(`/moderator.html${hash}`)
+    window.open(`./moderator.html${hash}`)
 })
 
 $("#join-game").on('click', () => {
     const gameID = $("#game-id").val();
     const hash = `#${gameID}`;
-    window.open(`/player.html${hash}`)
+    window.open(`./player.html${hash}`)
 })
