@@ -1,0 +1,199 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: none;
+}
+
+.buzzer-container, .moderator-container {
+    height: 97vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.black-box {
+    height: 250px;
+    width: 375px;
+    background-color: rgb(25, 25, 25);
+    border: 8px solid black;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.buzz-upper-dots, .buzz-bottom-dots{
+    height: 20px;
+    position: relative
+}
+
+.buzz-upper-dots {
+    background-image: linear-gradient(to bottom, rgb(40,40,40), rgb(25,25,25));
+}
+
+.buzz-left-dot {
+    width: 13px; height: 13px;
+    background-image: linear-gradient(to bottom, black, black, gray);
+    border: 4px solid rgb(10,10,10);
+    border-radius: 50%;
+    position: absolute;
+    left: 5px; 
+    transform: rotate(235deg);
+}
+
+.buzz-right-dot {
+    width: 13px; height: 13px;
+    background-image: linear-gradient(to bottom, black, black, gray);
+    border: 4px solid rgb(10,10,10);
+    border-radius: 50%;
+    position: absolute;
+    right: 5px; 
+    transform: rotate(235deg);
+}
+
+.upper-dot {
+    top: 4px;
+}
+
+.bottom-dot {
+    bottom: 4px
+}
+
+.buzz-light, .buzz-player-number {
+    position: relative;
+    height: 70px;
+    text-align: center;
+    color: white;
+    line-height: 90px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.buzz-light {
+    display: flex;
+    justify-content: center;
+}
+
+.buzz-inner-light {
+    width: 16px; height: 16px;
+    border: 4px solid rgb(10,10,10);
+    border-radius: 50%;
+    background-color: gray;
+    position: absolute;
+    top: 18px;
+}
+
+.buzz-button {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buzz-outer-button {
+    width: 55px; height: 55px;
+    border-radius: 50%;
+    border: 10px solid;
+    border-color:  black rgb(13,13,13) black rgb(60,60,60);
+    background-color: maroon;
+    transform: rotate(55deg);  
+    border-color:  black rgb(13,13,13) black rgb(60,60,60);
+}
+
+.buzz-inner-button {
+    width: 43px; height: 43px;
+    border-radius: 50%;
+    background-color: red;
+    border: 6px solid maroon;
+    transform: rotate(-55deg) translate(0, -4px)
+}
+
+.tan-box {
+    width: 285px; height: 370px;
+    background-color: rgb(224,222,206);
+    border: 5px solid;
+    border-color: rgb(148, 143, 135) rgb(190, 188, 164) rgb(186, 176, 160) rgb(186, 184, 160);
+    border-radius: 8px;
+    overflow: hidden
+}
+
+.mod-qbuzz-label {
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.mod-qbuzz-subtitle {
+    height: 30px;
+    text-align: center;
+    line-height: 15px;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.mod-lights-container {
+    height: 210px; 
+    display: flex;
+}
+
+.mod-left-labels, .mod-right-labels {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.left-label {
+    text-align: right
+}
+
+.mod-lights-middle {
+    width: 35%;
+    height: 100%;
+}
+
+.mod-left-red-lights, .mod-right-green-lights {
+    width: 18.5%; 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mod-actual-light {
+    width: 16px; height: 16px;
+    border: 2px solid rgb(10,10,10);
+    border-radius: 50%;
+}
+
+.team-1-light {
+    background-color: maroon;
+}
+
+.team-2-light {
+    background-color: darkgreen
+}
+
+.mod-reset {
+    height: 70px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mod-reset-button {
+    width: 25px; height: 25px;
+    border-radius: 50%;
+    background-color: maroon;
+    border: 3px solid;
+    border-color:  black rgb(13,13,13) black rgb(20,20,20);
+}
+
+.mod-reset-inner {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background-color: red;
+    border: 2px solid maroon;
+    transform: translate(0, -2px)
+}
