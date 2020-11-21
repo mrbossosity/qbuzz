@@ -8,7 +8,7 @@ body {
 }
 
 .host-join-buzzer-container {
-    height: 97vh;
+    height: 580px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
@@ -18,8 +18,8 @@ body {
 .join-modal {
     width: 100%;
     text-align: center;
-    margin-top: 4vh;
-    margin-bottom: 5vh
+    margin-top: 25px;
+    margin-bottom: 25px
 }
 
 #game-id {

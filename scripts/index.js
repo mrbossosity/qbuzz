@@ -32,9 +32,13 @@ $("#host-select").on('click', () => {
 
 $("#join-select").on('click', () => {
     buzzAnimation("#join-select", "#join-light", "#host-light");
-    $(".join-modal").show();
-    $("#game-id").val("").focus();
-    $(".bottom-container")[0].scrollIntoView(false)
+    let timer = setTimeout(function() {
+        $(".host-join-buzzer-container").hide(350, "linear");
+        $(".join-modal").show(200, "linear");
+        $("#game-id").val("").focus();
+        $(".bottom-container")[0].scrollIntoView(false)
+    }, 500)
+    
 })
 
 $("#join-game").on('click', () => {
