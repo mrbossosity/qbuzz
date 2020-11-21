@@ -28,7 +28,8 @@ $("#host-select").on('click', () => {
     const gameID = createGameID();
     const hash = `#${gameID}`;
     let timer = setTimeout(function() {
-        window.open(`./moderator.html${hash}`)
+        window.open(`./moderator.html${hash}`);
+        $("#host-light").css("background-color", "gray")
     }, 500)
 })
 
