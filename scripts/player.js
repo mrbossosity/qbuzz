@@ -59,11 +59,9 @@ function setupPeer(gameID) {
                 buzzAnimation(); 
             })
 
-
             conn.on('error', () => {
-                if (confirm('Game ended!')) {
-                    window.close()
-                }
+                alert('Oops! Something went wrong. Do you have the correct ID?');
+                window.close()
             })
             conn.on('close', () => {
                 if (confirm('Game ended!')) {

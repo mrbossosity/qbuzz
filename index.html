@@ -10,18 +10,55 @@
 </head>
 <body>
     <div class="supreme-container">
-        <div class="top-container"></div>
+        <div class="top-container">
+        </div>
         <div class="main-container">
-            <div class="host-or-join-modal">
-                <button id="host-select">Host a Game</button>
-                <button id="join-select">Join a Game</button>
-            </div>
-            <div class="join-modal">
-                <form target="frame">
-                    <label for="game-id">Game ID</label>
-                    <input type="text" name="game-id" id="game-id" required>
-                    <button id="join-game">Join Game</button>
-                </form>
+            <div class="host-join-buzzer-container">
+                <div class="black-box">
+                    <div class="buzz-upper-dots">
+                        <div class="buzz-left-dot upper-dot"></div>
+                        <div class="buzz-right-dot upper-dot"></div>
+                    </div>
+                    <div class="buzz-light">
+                        <div class="buzz-inner-light" id="host-light"></div>
+                    </div>
+                    <div class="buzz-button">
+                        <div class="buzz-outer-button">
+                            <div class="buzz-inner-button" id="host-select"></div>
+                        </div>
+                    </div>
+                    <div class="buzz-player-number"><span>Host a Game</span></div>
+                    <div class="buzz-bottom-dots">
+                        <div class="buzz-left-dot bottom-dot"></div>
+                        <div class="buzz-right-dot bottom-dot"></div>
+                    </div>
+                </div>
+                <div class="black-box">
+                    <div class="buzz-upper-dots">
+                        <div class="buzz-left-dot upper-dot"></div>
+                        <div class="buzz-right-dot upper-dot"></div>
+                    </div>
+                    <div class="buzz-light">
+                        <div class="buzz-inner-light" id="join-light"></div>
+                    </div>
+                    <div class="buzz-button">
+                        <div class="buzz-outer-button">
+                            <div class="buzz-inner-button" id="join-select"></div>
+                        </div>
+                    </div>
+                    <div class="buzz-player-number"><span>Join a Game</span></div>
+                    <div class="buzz-bottom-dots">
+                        <div class="buzz-left-dot bottom-dot"></div>
+                        <div class="buzz-right-dot bottom-dot"></div>
+                    </div>
+                </div>
+                <div class="join-modal" style='display: none'>
+                    <form target="frame">
+                        <label class="larger-text" for="game-id">Game ID:</label>
+                        <input class="larger-text" type="text" name="game-id" id="game-id" required>
+                        <button class="larger-text" id="join-game">Join Game</button>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="bottom-container"></div>

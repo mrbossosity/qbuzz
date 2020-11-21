@@ -8,10 +8,32 @@ function createGameID() {
     return string
 }
 
+function buzzAnimation(button, light, otherLight) {
+    $(button).css({
+        "transform": "rotate(-55deg)",
+        "border": "7px solid rgb(30,5,5)"
+    });
+    $(light).css("background-color", "lime");
+    $(otherLight).css("background-color", "gray");
+    let timer = setTimeout(function() {
+        $(button).css({
+            "transform": "rotate(-55deg) translate(0, -4px)",
+            "border": "6px solid maroon" 
+        })
+    }, 100)  
+}
+
 $("#host-select").on('click', () => {
+    buzzAnimation("#host-select", "#host-light", "#join-light");
     const gameID = createGameID();
     const hash = `#${gameID}`;
     window.open(`./moderator.html${hash}`)
+})
+
+$("#join-select").on('click', () => {
+    buzzAnimation("#join-select", "#join-light", "#host-light");
+    $(".join-modal").show();
+    $("#game-id").val("").focus()
 })
 
 $("#join-game").on('click', () => {
