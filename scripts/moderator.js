@@ -33,8 +33,14 @@ function setupPeer(id) {
 
         peer.on('connection', (conn) => {
             conn.on('open', () => {
-                console.log("Player joined!");
+                if (openDataConnections.length == 10) {
+                    conn.close();
+                    return
+                }
+
                 openDataConnections.push(conn);
+                let player = (openDataConnections.length > 5) ? openDataConnections.length - 5 : openDataConnections.length;
+                alert(`Player ${player} joined!`);
 
                 conn.on('data', (data) => {
                     if (lockout == false) {
@@ -43,20 +49,23 @@ function setupPeer(id) {
                         let litColor = (playerNum > 4) ? "lime" : "rgb(255,5,0)";
                         $(".mod-actual-light").eq(playerNum).css("background-color", litColor);
                     } 
-                    
+
                     lockout = true;
-                    console.log(data);
                 });
 
                 conn.on('error', () => {
                     alert("Someone was disconnected!");
                     openDataConnections.forEach(conn => conn.close());
-                    window.location.reload()
+                    let timer = setTimeout(function() {
+                        window.close()
+                    }, 1000)
                 })
                 conn.on('close', () => {
                     alert("Someone got disconnected!");
                     openDataConnections.forEach(conn => conn.close());
-                    window.location.reload()
+                    let timer = setTimeout(function() {
+                        window.close()
+                    }, 1000)                
                 })
             })
         })
