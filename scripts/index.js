@@ -33,7 +33,8 @@ $("#host-select").on('click', () => {
 $("#join-select").on('click', () => {
     buzzAnimation("#join-select", "#join-light", "#host-light");
     $(".join-modal").show();
-    $("#game-id").val("").focus()
+    $("#game-id").val("").focus();
+    $(".bottom-container")[0].scrollIntoView(false)
 })
 
 $("#join-game").on('click', () => {

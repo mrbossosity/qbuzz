@@ -17,7 +17,13 @@ body {
 
 .join-modal {
     width: 100%;
-    text-align: center
+    text-align: center;
+    margin-top: 4vh;
+    margin-bottom: 5vh
+}
+
+#game-id {
+    width: 160px
 }
 
 .buzzer-container, .moderator-container {
