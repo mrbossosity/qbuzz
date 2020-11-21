@@ -1,2 +1,2 @@
 # QBuzz
-A simple online buzzer system for quizbowl. UI modeled after the design of the popular Anderson Buzzer Systems.
+A simple online buzzer system for quizbowl. GUI modeled after the design of the popular Officiator by Anderson Buzzer Systems.
