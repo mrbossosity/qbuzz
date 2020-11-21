@@ -27,7 +27,9 @@ $("#host-select").on('click', () => {
     buzzAnimation("#host-select", "#host-light", "#join-light");
     const gameID = createGameID();
     const hash = `#${gameID}`;
-    window.open(`./moderator.html${hash}`)
+    let timer = setTimeout(function() {
+        window.open(`./moderator.html${hash}`)
+    }, 500)
 })
 
 $("#join-select").on('click', () => {
@@ -35,14 +37,25 @@ $("#join-select").on('click', () => {
     let timer = setTimeout(function() {
         $(".host-join-buzzer-container").hide(350, "linear");
         $(".join-modal").show(200, "linear");
-        $("#game-id").val("").focus();
-        $(".bottom-container")[0].scrollIntoView(false)
+        $("#game-id").val("").focus()
     }, 500)
-    
 })
 
 $("#join-game").on('click', () => {
-    const gameID = $("#game-id").val();
-    const hash = `#${gameID}`;
-    window.open(`./player.html${hash}`)
+    let input = $("#game-id").val();
+    if (input.length == 6) {
+        const gameID = $("#game-id").val();
+        const hash = `#${gameID}`;
+        window.open(`./player.html${hash}`)
+    } else {
+        alert("Game IDs are 6 digits long!")
+    }
+})
+
+$("#back-to-select").on('click', () => {
+    let timer = setTimeout(function() {
+        $(".join-modal").hide(200, "linear");
+        $(".host-join-buzzer-container").show(350, "linear");
+        $("#join-light").css("background-color", "gray")
+    }, 500)
 })
