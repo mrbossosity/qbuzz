@@ -12,6 +12,15 @@ function buzzAnimation() {
     }, 100)  
 }
 
+function buzzSfx(playerNum) {
+    if (playerNum > 4) {
+        $("#team-2-buzzer").trigger('play').prop('currentTime', 0);
+
+    } else {
+        $("#team-1-buzzer").trigger('play').prop('currentTime', 0);
+    }
+}
+
 function generatePeerID() {
     const digits = [1,2,3,4,5,6,7,8,9,0];
     var peerID = "";
@@ -36,6 +45,9 @@ function connectAndBindKeys(peer, gameID) {
                 if (data == "CLEAR") {
                     $(".buzz-inner-light").css("background-color", "gray")
                 }
+                if (typeof data == "number") {
+                    buzzSfx(data)
+                }
             })
         })
 
@@ -53,7 +65,7 @@ function connectAndBindKeys(peer, gameID) {
         conn.on('error', () => {
             alert('Oops! Something went wrong. Do you have the correct ID?');
         })
-        
+
         conn.on('close', () => {
             alert('Connection was closed!');
             window.close()

@@ -24,7 +24,6 @@ function buzzSfx(playerNum) {
     } else {
         $("#team-1-buzzer").trigger('play').prop('currentTime', 0);
     }
-
 }
 
 function setupPeer(id) {
@@ -49,12 +48,13 @@ function setupPeer(id) {
                 }
 
                 openDataConnections.push(conn);
+                var playerNum = openDataConnections.indexOf(conn);
 
                 conn.on('data', (data) => {
                     if (lockout == false) {
-                        let playerNum = openDataConnections.indexOf(conn);
                         buzzSfx(playerNum);
                         conn.send("ACCEPTED");
+                        conn.send(playerNum);
                         let litColor = (playerNum > 4) ? "lime" : "rgb(255,5,0)";
                         $(".mod-actual-light").eq(playerNum).css("background-color", litColor);
                     } 
