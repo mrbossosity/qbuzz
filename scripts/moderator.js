@@ -17,6 +17,16 @@ function clearAnimation() {
     }, 150) 
 }
 
+function buzzSfx(playerNum) {
+    if (playerNum > 4) {
+        $("#team-2-buzzer").trigger('play').prop('currentTime', 0);
+
+    } else {
+        $("#team-1-buzzer").trigger('play').prop('currentTime', 0);
+    }
+
+}
+
 function setupPeer(id) {
     var peer = new Peer(id, {
         secure: true,
@@ -39,13 +49,12 @@ function setupPeer(id) {
                 }
 
                 openDataConnections.push(conn);
-                let player = (openDataConnections.length > 5) ? openDataConnections.length - 5 : openDataConnections.length;
-                alert(`Player ${player} joined!`);
 
                 conn.on('data', (data) => {
                     if (lockout == false) {
-                        conn.send("ACCEPTED");
                         let playerNum = openDataConnections.indexOf(conn);
+                        buzzSfx(playerNum);
+                        conn.send("ACCEPTED");
                         let litColor = (playerNum > 4) ? "lime" : "rgb(255,5,0)";
                         $(".mod-actual-light").eq(playerNum).css("background-color", litColor);
                     } 

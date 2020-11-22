@@ -21,6 +21,47 @@ function generatePeerID() {
     return peerID
 }
 
+function connectAndBindKeys(peer, gameID) {
+    if (confirm("Join the game?")) {
+
+        $(".loader-container").hide();
+        $(".buzzer-container").show(400);
+
+        var conn = peer.connect(gameID);
+        conn.on('open', () => {
+            conn.on('data', (data) => {
+                if (data == "ACCEPTED") {
+                    $(".buzz-inner-light").css("background-color", "lime")
+                }
+                if (data == "CLEAR") {
+                    $(".buzz-inner-light").css("background-color", "gray")
+                }
+            })
+        })
+
+        $(document).on('keydown', (e) => {
+            if (e.keyCode === 32) {
+                conn.send("BUZZ")
+                buzzAnimation(); 
+            }
+        })
+        $(".buzz-outer-button").on('click', () => {
+            conn.send("BUZZ")
+            buzzAnimation(); 
+        })
+
+        conn.on('error', () => {
+            alert('Oops! Something went wrong. Do you have the correct ID?');
+        })
+        
+        conn.on('close', () => {
+            alert('Connection was closed!');
+            window.close()
+        })
+
+    } else window.close()
+}
+
 function setupPeer(gameID) {
     let peerID = generatePeerID();
 
@@ -35,41 +76,9 @@ function setupPeer(gameID) {
 
     var delay = Promise.resolve()
     .then(() => {
-        if (confirm("Join the game?")) {
-            var conn = peer.connect(gameID);
-            conn.on('open', () => {
-                conn.on('data', (data) => {
-                    if (data == "ACCEPTED") {
-                        $(".buzz-inner-light").css("background-color", "lime")
-                    }
-                    if (data == "CLEAR") {
-                        $(".buzz-inner-light").css("background-color", "gray")
-                    }
-                })
-            })
-
-            $(document).on('keydown', (e) => {
-                if (e.keyCode === 32) {
-                    conn.send("BUZZ")
-                    buzzAnimation(); 
-                }
-            })
-            $(".buzz-outer-button").on('click', () => {
-                conn.send("BUZZ")
-                buzzAnimation(); 
-            })
-
-            conn.on('error', () => {
-                alert('Oops! Something went wrong. Do you have the correct ID?');
-                window.close()
-            })
-            conn.on('close', () => {
-                if (confirm('Game ended!')) {
-                    window.close()
-                }
-            })
-
-        } else window.close()
+        let timer = setTimeout(function() {
+            connectAndBindKeys(peer, gameID)          
+        }, 2000)
     })
 }
 
